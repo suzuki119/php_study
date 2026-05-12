@@ -1,16 +1,15 @@
 <?php require '../header.php'; ?>
 <?php
 $text="商品の色を選択してください";
+
 if($_SERVER['REQUEST_METHOD']==='POST'){
 $colortext=$_REQUEST['color'];
 $text="商品の色は";
 
     echo $text,$colortext;
-
 };
-
 ?>
-<form method="post">
+<form action="select-out.php" method="post">
     <p>商品の色は?</p>
 
     <select name="color">
