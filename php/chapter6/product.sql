@@ -20,7 +20,7 @@ create table product (
 	id int auto_increment primary key,
 	name varchar(200) not null,
 	price int not null
-);
+); 
 -- create tableは、新しいテーブルを作成するためのコマンドです。ここでは、productという名前のテーブルを作成しています。idは、整数型で自動的に増加する主キーです。nameは、200文字までの文字列型で、nullを許可しません。priceは、整数型で、nullを許可しません。
 
 insert into product values(null, '松の実', 700);

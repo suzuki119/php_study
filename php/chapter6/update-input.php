@@ -3,8 +3,12 @@
 <div class="th1">商品名</div>
 <div class="th1">価格</div>
 <?php
-$pdo=new PDO('mysql:host=localhost;dbname=shop;charset=utf8', 
-	'staff', 'password');
+$pdo = new PDO(
+	'mysql:host=localhost;dbname=shop;charset=utf8',
+	'staff',
+	'password'
+);
+
 foreach ($pdo->query('select * from product') as $row) {
 	echo '<form action="update-output.php" method="post">';
 	echo '<input type="hidden" name="id" value="', $row['id'], '">';
@@ -19,5 +23,6 @@ foreach ($pdo->query('select * from product') as $row) {
 	echo '</form>';
 	echo "\n";
 }
+
 ?>
 <?php require '../footer.php'; ?>

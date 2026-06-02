@@ -5,6 +5,11 @@
 
 <?php
 
+$pdo = new PDO('mysql:host=localhost;dbname=shop;charset=utf8', 'staff', 'password');
+
+$tax_sql = $pdo->query('select * from tax_ratio');
+$tax_row = $tax_sql->fetch();
+
 $id = $_REQUEST['id'];
 if (!isset($_SESSION['product'])) {
     $_SESSION['product'] = [];
@@ -15,7 +20,7 @@ if (isset($_SESSION['product'][$id])) {
 }
 $_SESSION['product'][$id] = [
     'name' => $_REQUEST['name'],
-    'price' => $_REQUEST['price'],
+    'price' => round($_REQUEST['price'] + $_REQUEST['price'] * $tax_row['tax'] / 100 - $_REQUEST['price'] * $tax_row['point_ratio'] / 100 - $_REQUEST['price'] * $tax_row['sell_ratio'] / 100),
     'count' => $count + $_REQUEST['count']
 ];
 

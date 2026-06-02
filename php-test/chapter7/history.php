@@ -5,7 +5,7 @@
 
 if (isset($_SESSION['customer'])) {
 
-    //z
+    //
     $pdo = new PDO(
         'mysql:host=localhost;dbname=shop;charset=utf8',
         'staff',
@@ -14,7 +14,7 @@ if (isset($_SESSION['customer'])) {
 
     $sql_purchase = $pdo->prepare(
         'select * from purchase where customer_id=? order by id desc'
-    ); // purchaseテーブルから、現在ログインしている顧客の購入履歴を取得するためのSQL文を準備しています。customer_idでフィルタリングし、idの降順で並べ替えています。 purchaseテーブルに繋げ、purchase_detailテーブルと結合して、購入の詳細情報を取得するためのSQL文を準備しています。purchase_idでフィルタリングし、productテーブルと結合して、商品情報も取得しています。
+    ); // purchaseテーブルに繋げ、purchase_detailテーブルと結合して、購入の詳細情報を取得するためのSQL文を準備しています。purchase_idでフィルタリングし、productテーブルと結合して、商品情報も取得しています。
 
     $sql_purchase->execute([$_SESSION['customer']['id']]);
     foreach ($sql_purchase as $row_purchase) {
@@ -25,9 +25,11 @@ if (isset($_SESSION['customer'])) {
         $sql_detail->execute([$row_purchase['id']]);
         echo '<table>';
         echo '<tr><th>商品番号</th><th>商品名</th>',
-        '<th>価格</th><th>個数</th><th>小計</th></tr>';
+        '<th>価格(税抜)</th><th>個数</th><th>小計</th></tr>';
         $total = 0;
+
         foreach ($sql_detail as $row_detail) {
+
             echo '<tr>';
             echo '<td>', $row_detail['id'], '</td>';
             echo '<td><a href="detail.php?id=', $row_detail['id'], '">',

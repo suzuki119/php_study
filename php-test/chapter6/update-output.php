@@ -1,7 +1,9 @@
 <?php require '../header.php'; ?>
 <?php
 $pdo = new PDO('mysql:host=localhost;dbname=shop;charset=utf8', 'staff', 'password');
+
 $sql = $pdo->prepare('update product set name=?, price=? where id=?');
+
 if (empty($_REQUEST['name'])) {
     echo '検索キーワードが入力されていません。';
 } else

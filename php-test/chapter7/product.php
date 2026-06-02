@@ -19,6 +19,9 @@ if (isset($_REQUEST['keyword'])) {
     $sql->execute(['%' . $_REQUEST['keyword'] . '%']);
 } else {
     $sql = $pdo->query('select * from product');
+
+    $tax_sql = $pdo->query('select * from tax_ratio');
+    $tax_row = $tax_sql->fetch();
 }
 foreach ($sql as $row) {
     $id = $row['id'];
@@ -27,7 +30,7 @@ foreach ($sql as $row) {
     echo '<td>';
     echo '<a href="detail.php?id=', $id, '">', $row['name'], '</a>';
     echo '</td>';
-    echo '<td>', $row['price'], '</td>';
+    echo '<td>', round($row['price'] + $row['price'] * $tax_row['tax'] / 100 - $row['price'] * $tax_row['sell_ratio'] / 100), '円</td>';
     echo '</tr>';
 }
 echo '</table>';

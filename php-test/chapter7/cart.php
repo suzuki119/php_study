@@ -1,9 +1,13 @@
 <?php
+
+
+
 if (!empty($_SESSION['product'])) {
 	echo '<table>';
 	echo '<tr><th>商品番号</th><th>商品名</th>';
-	echo '<th>価格</th><th>個数</th><th>小計</th><th></th></tr>';
+	echo '<th>価格(税込)</th><th>個数</th><th>小計</th><th></th></tr>';
 	$total = 0;
+
 	foreach ($_SESSION['product'] as $id => $product) {
 		echo '<tr>';
 		echo '<td>', $id, '</td>';
@@ -17,6 +21,7 @@ if (!empty($_SESSION['product'])) {
 		echo '<td><a href="cart-delete.php?id=', $id, '">削除</a></td>';
 		echo '</tr>';
 	}
+
 	echo '<tr><td>合計</td><td></td><td></td><td></td><td>', $total,
 	'</td><td></td></tr>';
 	echo '</table>';

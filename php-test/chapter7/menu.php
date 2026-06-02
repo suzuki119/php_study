@@ -6,4 +6,5 @@
 <a href="login-input.php">ログイン</a>
 <a href="logout-input.php">ログアウト</a>
 <a href="customer-input.php">会員登録</a>
+<a href="tax-update.php">税率編集</a>
 <hr>
