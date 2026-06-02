@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     税率<input type="text" name="tax" value="<?= htmlspecialchars($row['tax']) ?>"><br>
 
-    販売比率<input type="text" name="sell_ratio" value="<?= htmlspecialchars($row['sell_ratio']) ?>"><br>
+    割引セール<input type="text" name="sell_ratio" value="<?= htmlspecialchars($row['sell_ratio']) ?>"><br>
 
     ポイント比率<input type="text" name="point_ratio" value="<?= htmlspecialchars($row['point_ratio']) ?>"><br>
     <input type="submit" value="確定">

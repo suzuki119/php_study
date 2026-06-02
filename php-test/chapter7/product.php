@@ -30,7 +30,7 @@ foreach ($sql as $row) {
     echo '<td>';
     echo '<a href="detail.php?id=', $id, '">', $row['name'], '</a>';
     echo '</td>';
-    echo '<td>', round($row['price'] + $row['price'] * $tax_row['tax'] / 100 - $row['price'] * $tax_row['sell_ratio'] / 100), '円</td>';
+    echo '<td>', round(($row['price'] + $row['price'] * $tax_row['tax'] / 100) - ($row['price'] + $row['price'] * $tax_row['tax'] / 100) * $tax_row['sell_ratio'] / 100), '円</td>';
     echo '</tr>';
 }
 echo '</table>';
