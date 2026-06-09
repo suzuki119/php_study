@@ -8,5 +8,20 @@
 // 一回の判定で全部確認するのではなく、1つずつ実行する方法もある
 // 個々の判定は /[a-z]+/ のようにシンプルになる
 
+$password = $_REQUEST['password'];
+
+if (preg_match(
+    '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$/',
+    $password
+)) {
+    if (strlen($password) >= 8) {
+        echo 'パスワード「', $password, '」を確認しました。';
+    }
+} else {
+    echo 'パスワード「', $password, '」は適切ではありません。';
+}
+
+
+
 ?>
 <?php require '../footer.php'; ?>
