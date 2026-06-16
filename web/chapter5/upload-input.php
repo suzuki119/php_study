@@ -6,7 +6,10 @@
 ファイルアップロードには、enctype="multipart/form-data"という設定が必要
 upload-output.phpへ移動
 -->
-<form action="upload-input2.php" method="post">
-    
+<form action="upload-output.php" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="submit" value="確定">
+
+
 </form>
 <?php require '../footer.php'; ?>
