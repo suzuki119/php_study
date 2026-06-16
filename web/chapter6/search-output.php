@@ -9,8 +9,9 @@ $pdo = new PDO(
 // データベースには、prepare と execute の2段階で
 // 出力はHTML表形式
 $keyword = $_REQUEST['keyword'];
+
 $sql = $pdo->prepare('select * from product where name like ?');
-$sql->execute([$keyword]);
+$sql->execute(['%' . $keyword . '%']);
 
 
 if ($sql->rowCount() > 0) {

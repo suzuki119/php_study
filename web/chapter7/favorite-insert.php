@@ -1,16 +1,32 @@
 <?php session_start(); ?>
+
 <?php require '../header.php'; ?>
 <?php require 'menu.php'; ?>
+
 <?php
-	$pdo=new PDO('mysql:host=localhost;dbname=shop;charset=utf8', 
-		'staff', 'password');
+if (isset($_SESSION['customer'])) {
+	$pdo = new PDO('mysql:host=localhost;dbname=shop;charset=utf8', 'staff', 'password');
 
-	require 'favorite.php'; // お気に入り一覧
-// ログインしているか判定する
-// →ログインしていれば、
-//   リクエストされた id をお気に入りに追加する。
-//   現在ログインしているユーザーと、商品idとを登録する
+	$check = $pdo->prepare('select * from favorite where customer_id=? and product_id=?');
+	$check->execute([$_SESSION['customer']['id'], $_REQUEST['id']]);
 
-// 余力のある人は、商品が存在するかどうか
+	if ($check->fetch()) {
+		echo 'すでにお気に入りに追加されています';
+	} else {
+		$sql = $pdo->prepare('insert into favorite values(?,?)');
+		$sql->execute([$_SESSION['customer']['id'], $_REQUEST['id']]);
+		echo 'お気に入りを追加しました';
+	}
+
+	echo '<hr>';
+	require 'favorite.php';
+} else {
+	echo 'お気に入りに商品を追加するには、ログインしてください';
+}
+
+
+?>
+
+
 
 <?php require '../footer.php'; ?>
