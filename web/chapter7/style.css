@@ -1,6 +1,12 @@
 @charset "UTF-8";
-th, td {
+th {
 	padding: 5px;
+	background-color: #eeeeee;
+}
+
+td {
+	padding: 5px;
+	background-color: #ffd0d0;
 }
 a {
 	padding-right: 10px;

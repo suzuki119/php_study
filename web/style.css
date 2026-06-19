@@ -4,11 +4,17 @@ body{
 	background-image: url(logo.png);
 	background-size: 70px 70px;
 	background-repeat: repeat-y;
-	
+
 	padding-left: 70px;
 }
 footer{
 	background-color: saddlebrown;
 	margin: 20px 0px 0px -10px;
 	padding: 10px;
+}
+
+
+
+a {
+	padding-right: 10px;
 }
