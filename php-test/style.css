@@ -4,6 +4,7 @@ body{
 	background-image: url(logo.png);
 	background-size: 70px 70px;
 	background-repeat: repeat-y;
+	text-align: center;
 
 	padding-left: 70px;
 }
@@ -12,8 +13,50 @@ footer{
 	margin: 20px 0px 0px -10px;
 	padding: 10px;
 }
+/* ナビゲーション：横並び・中央寄せ・折り返し */
+.menu {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 6px 18px;
+	padding: 12px 0;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #ccc;
+}
+.menu a {
+	padding: 4px 8px;
+	white-space: nowrap;
+}
+
+/* フォーム：中央に置きつつ中身は左揃え、入力欄に余白 */
+form {
+	display: inline-block;
+	text-align: left;
+	margin: 16px auto;
+}
+form input {
+	margin: 4px 0;
+}
+input[type="submit"] {
+	margin-top: 10px;
+}
+
+/* 本文の縦リズム */
+p {
+	margin: 8px 0;
+}
+hr {
+	margin: 16px auto;
+	max-width: 600px;
+}
+
 .ib {
 	display: inline-block;
+}
+
+table{
+	display: inline-block;
+	text-align: center;
 }
 
 .th0,
@@ -43,4 +86,28 @@ footer{
 .th1,
 .td1 {
 	width: 11em;
+}
+
+a{
+	display: inline-block;
+	background-color: saddlebrown;
+	color: white;
+	padding: 4px 8px;
+	text-decoration: none;
+	border-radius: 15px;
+}
+
+.menu a {
+	background-color: transparent;
+	color: black;
+	border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+	background-color: rgb(19, 85, 139);
+	color: white;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 15px;
+	cursor: pointer;
 }
