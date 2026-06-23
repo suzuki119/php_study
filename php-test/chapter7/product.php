@@ -17,6 +17,8 @@ $pdo = new PDO(
 if (isset($_REQUEST['keyword'])) {
     $sql = $pdo->prepare('select * from product where name like ?');
     $sql->execute(['%' . $_REQUEST['keyword'] . '%']);
+    $tax_sql = $pdo->query('select * from tax_ratio');
+    $tax_row = $tax_sql->fetch();
 } else {
     $sql = $pdo->query('select * from product');
 
@@ -30,7 +32,7 @@ foreach ($sql as $row) {
     echo '<td>';
     echo '<a href="detail.php?id=', $id, '">', $row['name'], '</a>';
     echo '</td>';
-    echo '<td>', round(($row['price'] + $row['price'] * $tax_row['tax'] / 100) - ($row['price'] + $row['price'] * $tax_row['tax'] / 100) * $tax_row['sell_ratio'] / 100), '円</td>';
+    echo '<td>', round($row['price'] + $row['price'] * $tax_row['tax'] / 100), '円</td>';
     echo '</tr>';
 }
 echo '</table>';

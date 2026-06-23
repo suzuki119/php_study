@@ -20,7 +20,7 @@ if (isset($_SESSION['product'][$id])) {
 }
 $_SESSION['product'][$id] = [
     'name' => $_REQUEST['name'],
-    'price' => round($_REQUEST['price'] + $_REQUEST['price'] * $tax_row['tax'] / 100 - $_REQUEST['price'] * $tax_row['point_ratio'] / 100 - $_REQUEST['price'] * $tax_row['sell_ratio'] / 100),
+    'price' => round($_REQUEST['price']),
     'count' => $count + $_REQUEST['count']
 ];
 

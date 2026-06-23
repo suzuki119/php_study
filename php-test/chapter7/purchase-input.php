@@ -28,6 +28,7 @@ if (empty($_SESSION['product'])) {
 	echo '<hr>';
 	echo '<p>内容をご確認いただき、購入を確定してください。</p>';
 	echo '<p>総額:', $total, '円</p>';
+	echo '<p>セール後:', round($total - ($total * $tax_row['sell_ratio'] / 100), 0), '円</p>';
 	echo '<p>獲得ポイント:', $point, 'ポイント</p>';
 	echo '<a href="purchase-output.php">
 	購入を確定する</a>';
