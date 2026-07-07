@@ -23,11 +23,11 @@ echo '最終更新日時は', $row['updated_at'], 'です。<br>';
 <form action="tax-update-output.php" method="post">
     <form action="tax-update-output.php" method="post">
 
-        税率<input type="text" name="tax" value=<?= $row['tax'] ?>><br>
+        税率<input type="number" name="tax" min="0" max="99" value="<?= $row['tax'] ?>"><br>
 
-        割引セール<input type="text" name="sell_ratio" value="<?= $row['sell_ratio'] ?>"><br>
+        割引セール<input type="number" name="sell_ratio" min="0" max="99" value="<?= $row['sell_ratio'] ?>"><br>
 
-        ポイント比率<input type="text" name="point_ratio" value="<?= $row['point_ratio'] ?>"><br>
+        ポイント比率<input type="number" name="point_ratio" min="0" max="99" value="<?= $row['point_ratio'] ?>"><br>
         <input type="submit" value="確定">
 
     </form>

@@ -34,15 +34,15 @@ if (isset($_SESSION['customer'])) {
             echo '<td>', $row_detail['id'], '</td>';
             echo '<td><a href="detail.php?id=', $row_detail['id'], '">',
             $row_detail['name'], '</a></td>';
-            echo '<td>', $row_detail['price'], '</td>';
+            echo '<td>', number_format($row_detail['price']), '</td>';
             echo '<td>', $row_detail['count'], '</td>';
             $subtotal = $row_detail['price'] * $row_detail['count'];
             $total += $subtotal;
-            echo '<td>', $subtotal, '</td>';
+            echo '<td>', number_format($subtotal), '</td>';
             echo '</tr>';
         }
         echo '<tr><td>合計</td><td></td><td></td><td></td><td>',
-        $total, '</td></tr>';
+        number_format($total), '</td></tr>';
         echo '</table>';
         echo '<hr>';
     }

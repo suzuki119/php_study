@@ -1,6 +1,6 @@
 <?php require '../header.php'; ?>
 <?php require 'menu.php'; ?>
-<form action="product.php" method="post">
+<form action="product.php" method="post" class="search-form">
     商品検索
     <input type="text" name="keyword">
     <input type="submit" value="検索">
@@ -32,7 +32,7 @@ foreach ($sql as $row) {
     echo '<td>';
     echo '<a href="detail.php?id=', $id, '">', $row['name'], '</a>';
     echo '</td>';
-    echo '<td>', round($row['price'] + $row['price'] * $tax_row['tax'] / 100), '円</td>';
+    echo '<td>', number_format(round($row['price'] + $row['price'] * $tax_row['tax'] / 100)), '円</td>';
     echo '</tr>';
 }
 echo '</table>';
