@@ -19,15 +19,16 @@ foreach ($sql as $row) {
     echo '<form action="cart-insert.php" method="post" class="item-form">';
     echo '<p>商品番号：', $row['id'], '</p>';
     echo '<p>商品名：', $row['name'], '</p>';
-    echo '<p>価格：', number_format(round($row['price'] + $row['price'] * $tax_row['tax'] / 100)), '円</p>';
-    echo '<p>個数：<select name="count">';
-    for ($i = 1; $i <= 10; $i++) {
-        echo '<option value="', $i, '">', $i, '</option>';
-    }
-    echo '</select></p>';
+    echo '<p>価格：', number_format(round((($row['price'] - $row['price'] * ($tax_row['sell_ratio'] / 100)) + $row['price'] * $tax_row['tax'] / 100))), '円</p>';
+    echo '<p>個数：';
+
+    echo '<input type="range" name="count" id="count" min="1" max="50" value="1" oninput="updateCountText(this.value)">'; //スライダー
+    echo '<input type="text" name="count_text" id="count_text" value="1">'; //テキストボックス
+    echo '</p>';
+
     echo '<input type="hidden" name="id" value="', $row['id'], '">';
     echo '<input type="hidden" name="name" value="', $row['name'], '">';
-    echo '<input type="hidden" name="price" value="', $row['price'] + $row['price'] * $tax_row['tax'] / 100, '">';
+    echo '<input type="hidden" name="price" value="', round((($row['price'] - $row['price'] * ($tax_row['sell_ratio'] / 100)) + $row['price'] * $tax_row['tax'] / 100)), '">';
     echo '<p><input type="submit" value="カートに追加"></p>';
     echo '</form>';
     echo '</div>';
@@ -40,6 +41,25 @@ foreach ($sql as $row) {
 
     $review_sql = $pdo->prepare('select * from review where product_id=? order by created_at desc');
     $review_sql->execute([$row['id']]);
+    $review_count = 0;
+    $review_point = 0;
+    $review_average = 0;
+
+    foreach ($review_sql as $review) {
+        $review_count++;
+        $review_point += $review['rating'];
+    }
+    echo '<p>レビュー件数：', $review_count, '</p>';
+    if ($review_count > 0) {
+        $review_average = round($review_point / $review_count, 1);
+        echo '<p>平均評価：★', $review_average, '</p>';
+    } else {
+        echo '<p>平均評価：レビューなし</p>';
+    }
+
+
+    $review_sql->execute([$row['id']]);
+
     foreach ($review_sql as $review) {
         echo '<div class="review">';
         echo '<p>', str_repeat('★', $review['rating']), '</p>';

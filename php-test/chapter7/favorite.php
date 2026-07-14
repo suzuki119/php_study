@@ -22,7 +22,7 @@ if (isset($_SESSION['customer'])) {
             echo '<tr>';
             echo '<td>', $id, '</td>';
             echo '<td> <a href="detail.php?id=', $id, '">', $row['name'], '</a></td>';
-            echo '<td>', number_format(round($row['price'] + $row['price'] * $tax_row['tax'] / 100)), '円</td>';
+            echo '<td>', number_format(round((($row['price'] - $row['price'] * ($tax_row['sell_ratio'] / 100)) + $row['price'] * $tax_row['tax'] / 100))), '円</td>';
             echo '<td><a href="favorite-delete.php?id=', $id, '">削除</a></td>';
             echo '</tr>';
         }

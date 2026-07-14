@@ -177,3 +177,13 @@ textarea{
 		margin: 5px 0;
 	}
 }
+
+input#count {
+	width: 200px;
+	margin-right: 10px;
+	appearance: auto;
+}
+input#count_text {
+	width: 50px;
+	border: 1px solid #000000;
+}
