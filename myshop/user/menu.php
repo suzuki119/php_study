@@ -9,4 +9,5 @@
 	<a href="customer-input.php">会員登録</a>
 	<a href="customer-delete-input.php">退会</a>
 	<a href="tax-update-input.php">税率編集</a>
+	<a href="../owner/edit3.php">商品編集</a>
 </nav>

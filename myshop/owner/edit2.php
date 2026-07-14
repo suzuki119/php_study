@@ -35,4 +35,5 @@ foreach ($pdo->query('select * from product') as $row) {
     <div class="td1"><input type="text" name="price"></div>
     <div class="td2"><input type="submit" value="追加"></div>
 </form><br>
+<a href="../user/login-input.php">商品編集画面に戻る</a>
 <?php require '../footer.php'; ?>
