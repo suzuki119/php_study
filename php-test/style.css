@@ -158,3 +158,22 @@ input:not([type="submit"]) {
 	border: 5px solid #000000;
 	border-radius: 10px;
 }
+
+textarea{
+	width: 400px;
+	height: 200px;
+	border: 1px solid #000000;
+}
+
+.review {
+	display: block;
+	margin: 10px auto;
+	width: 400px;
+	padding: 10px;
+	border: 5px solid #000000;
+	border-radius: 10px;
+
+	& p {
+		margin: 5px 0;
+	}
+}
