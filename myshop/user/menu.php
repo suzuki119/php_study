@@ -1,13 +1,24 @@
-<nav class="menu">
-	<a href="product.php">商品</a>
-	<a href="favorite-show.php">お気に入り</a>
-	<a href="history.php">購入履歴</a>
-	<a href="cart-show.php">カート</a>
-	<a href="purchase-input.php">購入</a>
-	<a href="login-input.php">ログイン</a>
-	<a href="logout-input.php">ログアウト</a>
-	<a href="customer-input.php">会員登録</a>
-	<a href="customer-delete-input.php">退会</a>
-	<a href="tax-update-input.php">税率編集</a>
-	<a href="../owner/edit3.php">商品編集</a>
-</nav>
+<?php
+$current_page = basename($_SERVER['SCRIPT_NAME']);
+$menu_items = [
+	'product.php'               => '商品',
+	'favorite-show.php'         => 'お気に入り',
+	'history.php'               => '購入履歴',
+	'cart-show.php'             => 'カート',
+	'purchase-input.php'        => '購入',
+	'login-input.php'           => 'ログイン',
+	'logout-input.php'          => 'ログアウト',
+	'customer-input.php'        => '会員登録',
+	'customer-delete-input.php' => '退会',
+	'tax-update-input.php'      => '税率編集',
+	'../owner/edit3.php'        => '商品編集',
+];
+?>
+<div class="site-header">
+	<a class="brand" href="product.php">NUTS SHOP</a>
+	<nav class="menu">
+		<?php foreach ($menu_items as $href => $label): ?>
+			<a href="<?= $href ?>" class="<?= basename($href) === $current_page ? 'is-active' : '' ?>"><?= $label ?></a>
+		<?php endforeach; ?>
+	</nav>
+</div>

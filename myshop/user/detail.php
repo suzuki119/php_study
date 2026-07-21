@@ -15,7 +15,7 @@ $tax_row = $tax_sql->fetch();
 
 foreach ($sql as $row) {
     echo '<div class="detail">';
-    echo '<div class="item"><img alt="image" src="image/', $row['id'], '.jpg"></div>';
+    echo '<img src="image/', $row['id'], '.jpg" alt="', htmlspecialchars($row['name']), '" onerror="this.remove()">';
     echo '<form action="cart-insert.php" method="post" class="item-form">';
     echo '<p>商品番号：', $row['id'], '</p>';
     echo '<p>商品名：', $row['name'], '</p>';
