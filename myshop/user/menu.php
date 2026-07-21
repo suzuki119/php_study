@@ -1,4 +1,8 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+	session_start();
+}
+
 $current_page = basename($_SERVER['SCRIPT_NAME']);
 $menu_items = [
 	'product.php'               => '商品',
@@ -10,9 +14,13 @@ $menu_items = [
 	'logout-input.php'          => 'ログアウト',
 	'customer-input.php'        => '会員登録',
 	'customer-delete-input.php' => '退会',
-	'tax-update-input.php'      => '税率編集',
-	'../owner/edit3.php'        => '商品編集',
 ];
+
+if (!empty($_SESSION['customer']['owner'])) {
+	$menu_items['tax-update-input.php']  = '税率編集';
+	$menu_items['../owner/edit3.php']    = '商品編集';
+	$menu_items['../owner/set-edit.php'] = 'セット編集';
+}
 ?>
 <div class="site-header">
 	<a class="brand" href="product.php">NUTS SHOP</a>

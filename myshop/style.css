@@ -31,6 +31,11 @@
 	box-sizing: border-box;
 }
 
+:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+	all: revert;
+	display: revert;
+}
+
 body {
 	background: var(--bg);
 	color: var(--ink);
@@ -121,7 +126,6 @@ hr {
 	background: none;
 	box-shadow: none;
 	transform: none;
-	color: var(--accent);
 }
 
 .menu {
@@ -143,11 +147,7 @@ hr {
 	white-space: nowrap;
 }
 
-.menu a:hover {
-	background: var(--accent-soft);
-	color: var(--accent-dark);
-	transform: none;
-}
+
 
 .menu a.is-active {
 	background: var(--accent);
@@ -168,10 +168,6 @@ a {
 	font-weight: 600;
 	transition: background-color .15s ease, color .15s ease,
 		transform .15s ease;
-}
-
-a:hover {
-	background: var(--accent-dark);
 }
 
 /* 表の中のリンクは控えめに */
@@ -551,6 +547,33 @@ input#count_text {
 .td2 input[type="submit"] {
 	margin: 0;
 	padding: 8px 18px;
+}
+
+.product-checks {
+	display: block;
+	margin: 6px 0;
+	font-size: 13px;
+	color: var(--ink-muted);
+}
+
+.product-checks label {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	margin: 4px 12px 4px 0;
+	font-weight: 500;
+}
+
+.price-summary {
+	display: block;
+	margin: 6px 0;
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--ink-muted);
+}
+
+.price-summary .original-price-value {
+	color: var(--ink);
 }
 
 /* ============================================================

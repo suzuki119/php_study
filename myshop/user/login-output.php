@@ -18,7 +18,8 @@ foreach ($sql as $row) {
         'address' => $row['address'],
         'login' => $row['login'],
         'password' => $row['password'],
-        'point' => $row['point']
+        'point' => $row['point'],
+        'owner' => (bool)$row['owner']
     ];
 }
 

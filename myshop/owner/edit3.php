@@ -1,4 +1,6 @@
+<?php session_start(); ?>
 <?php require '../header.php'; ?>
+<?php require '../require-owner.php'; ?>
 <?php
 
 $pdo = new PDO('mysql:host=localhost;dbname=shop;charset=utf8', 'staff', 'password');
@@ -84,6 +86,7 @@ foreach ($pdo->query('select * from product') as $row) {
 </form>
 <br>
 <a href="../user/login-input.php">商品編集画面に戻る</a>
+<a href="./set-edit.php">セット編集画面</a>
 
 
 <?php require '../footer.php'; ?>

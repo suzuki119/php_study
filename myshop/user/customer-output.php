@@ -29,13 +29,13 @@ if (empty($sql->fetchAll())) { // ログイン名が重複していない場合�
             $_REQUEST['password'],
             $id
         ]);
-        $_SESSION['customer'] = [
+        $_SESSION['customer'] = array_merge($_SESSION['customer'], [
             'id' => $id,
             'name' => $_REQUEST['name'],
             'address' => $_REQUEST['address'],
             'login' => $_REQUEST['login'],
             'password' => $_REQUEST['password']
-        ];
+        ]);
         echo 'データを更新しました。';
     } else { // ログインしていない場合は、データベースに登録
         $sql = $pdo->prepare('insert into customer values(null, ?, ?, ?, ?)');
