@@ -63,7 +63,15 @@ hr {
 }
 
 .ib {
-	display: inline-block;
+	display: block;
+}
+
+.product-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 100px;
 }
 
 .page-title {
@@ -534,11 +542,6 @@ input#count_text {
 .th0,
 .td0 {
 	width: 6em;
-}
-
-.th1,
-.td1 {
-	width: 12em;
 }
 
 .td1 input[type="text"] {
