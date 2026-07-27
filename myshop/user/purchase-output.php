@@ -3,11 +3,7 @@
 <?php require 'menu.php'; ?>
 <?php
 
-$pdo = new PDO(
-	'mysql:host=localhost;dbname=shop;charset=utf8',
-	'staff',
-	'password'
-);
+require __DIR__ . '/../db.php';
 
 $purchase_id = 1; //購入IDは、purchaseテーブルの最大値に1を加えたものとする
 

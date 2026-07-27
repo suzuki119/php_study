@@ -8,11 +8,7 @@ if (!isset($_SESSION['customer'])) {
 } else {
 
     $product_id = $_REQUEST['id'];
-    $pdo = new PDO(
-        'mysql:host=localhost;dbname=shop;charset=utf8',
-        'staff',
-        'password'
-    );
+    require __DIR__ . '/../db.php';
     $sql = $pdo->prepare('select * from product where id=?');
     $sql->execute([$product_id]);
 

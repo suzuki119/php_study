@@ -7,11 +7,7 @@
     <input type="submit" value="検索">
 </form>
 <?php
-$pdo = new PDO(
-    'mysql:host=localhost;dbname=shop;charset=utf8',
-    'staff',
-    'password'
-);
+require __DIR__ . '/../db.php';
 if (isset($_REQUEST['keyword'])) {
     $sql = $pdo->prepare('select * from product where name like ?');
     $sql->execute(['%' . $_REQUEST['keyword'] . '%']);

@@ -1,6 +1,6 @@
 <?php require '../header.php'; ?>
 <?php
-$pdo = new PDO('mysql:host=localhost;dbname=shop;charset=utf8', 'staff', 'password');
+require __DIR__ . '/../db.php';
 foreach ($pdo->query('select * from product') as $row) {
     echo '<form action="update-output.php" method="post">';
     echo '<input type="hidden" name="id" value="', $row['id'], '">';

@@ -5,11 +5,7 @@
 
 <?php
 
-$pdo = new PDO(
-    'mysql:host=localhost;dbname=shop;charset=utf8',
-    'staff',
-    'password'
-);
+require __DIR__ . '/../db.php';
 
 $sql = $pdo->query('select * from tax_ratio');
 $row = $sql->fetch();

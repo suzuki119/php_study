@@ -3,7 +3,7 @@
 <?php require '../require-owner.php'; ?>
 <?php
 
-$pdo = new PDO('mysql:host=localhost;dbname=shop;charset=utf8', 'staff', 'password');
+require __DIR__ . '/../db.php';
 
 function save_product_image($id)
 {

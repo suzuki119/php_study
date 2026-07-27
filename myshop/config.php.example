@@ -1,0 +1,9 @@
+<?php
+
+// このファイルを config.php としてコピーし、環境ごとの接続情報を設定してください。
+// config.php は .gitignore 対象なので、ロリポップ本番用の値と手元の開発用の値を別々に管理できます。
+
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'shop');
+define('DB_USER', 'staff');
+define('DB_PASSWORD', 'password');

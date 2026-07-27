@@ -2,11 +2,7 @@
 <?php require '../header.php'; ?>
 <?php require 'menu.php'; ?>
 <?php
-$pdo = new PDO(
-    'mysql:host=localhost;dbname=shop;charset=utf8',
-    'staff',
-    'password'
-);
+require __DIR__ . '/../db.php';
 $sql = $pdo->prepare('select * from product where id=?');
 
 $sql->execute([$_REQUEST['id']]);

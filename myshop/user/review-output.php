@@ -3,11 +3,7 @@
 <?php require 'menu.php'; ?>
 <?php
 
-$pdo = new PDO(
-    'mysql:host=localhost;dbname=shop;charset=utf8',
-    'staff',
-    'password'
-);
+require __DIR__ . '/../db.php';
 $sql = $pdo->prepare('insert into review (customer_id, product_id, rating, review_text) values (?, ?, ?, ?)');
 $sql->execute([
     $_SESSION['customer']['id'],

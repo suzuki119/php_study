@@ -4,11 +4,7 @@
 <?php
 
 
-$pdo = new PDO(
-    'mysql:host=localhost;dbname=shop;charset=utf8',
-    'staff',
-    'password'
-);
+require __DIR__ . '/../db.php';
 $sql = $pdo->prepare('delete from review where id=? and customer_id=?');
 $sql->execute([$_REQUEST['id'], $_SESSION['customer']['id']]);
 

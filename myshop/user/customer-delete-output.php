@@ -10,7 +10,7 @@ if (!isset($_SESSION['customer'])) {
 } elseif ($_REQUEST['password'] !== $_SESSION['customer']['password']) {
     echo 'パスワードが正しくありません。';
 } else {
-    $pdo = new PDO('mysql:host=localhost;dbname=shop;charset=utf8', 'staff', 'password');
+    require __DIR__ . '/../db.php';
     // エラー時に例外を投げるようにする（catchで拾えるようにするため）
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

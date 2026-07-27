@@ -6,7 +6,7 @@
 <div class="th1">価格</div>
 <?php
 
-$pdo = new PDO('mysql:host=localhost;dbname=shop;charset=utf8', 'staff', 'password');
+require __DIR__ . '/../db.php';
 
 foreach ($pdo->query('select * from product') as $row) {
     echo '<form class="ib" action="edit3.php" method="post">';

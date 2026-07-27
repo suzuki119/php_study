@@ -5,7 +5,7 @@
 
 <?php
 
-$pdo = new PDO('mysql:host=localhost;dbname=shop;charset=utf8', 'staff', 'password');
+require __DIR__ . '/../db.php';
 
 if (isset($_SESSION['customer'])) { // ログインしている場合は、ログイン名が変更されていないか確認するために、データベースから現在のログイン名を取得
 

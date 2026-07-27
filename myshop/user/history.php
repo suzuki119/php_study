@@ -5,12 +5,7 @@
 
 if (isset($_SESSION['customer'])) {
 
-    //
-    $pdo = new PDO(
-        'mysql:host=localhost;dbname=shop;charset=utf8',
-        'staff',
-        'password'
-    );
+    require __DIR__ . '/../db.php';
 
     $sql_purchase = $pdo->prepare(
         'select * from purchase where customer_id=? order by id desc'

@@ -5,7 +5,7 @@
 
 <?php
 if (isset($_SESSION['customer'])) {
-    $pdo = new PDO('mysql:host=localhost;dbname=shop;charset=utf8', 'staff', 'password');
+    require __DIR__ . '/../db.php';
 
     $check = $pdo->prepare('select * from favorite where customer_id=? and product_id=?');
     $check->execute([$_SESSION['customer']['id'], $_REQUEST['id']]);

@@ -9,11 +9,7 @@ if (empty($_SESSION['product'])) {
 	echo 'カートに商品がありません。';
 } else {
 
-	$pdo = new PDO(
-		'mysql:host=localhost;dbname=shop;charset=utf8',
-		'staff',
-		'password'
-	);
+	require __DIR__ . '/../db.php';
 	$sql = $pdo->query('select * from tax_ratio');
 	$tax_row = $sql->fetch();
 
