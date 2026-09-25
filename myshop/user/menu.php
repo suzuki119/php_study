@@ -16,6 +16,11 @@ $menu_items = [
 	'customer-delete-input.php' => '退会',
 ];
 
+if (!empty($_SESSION['customer']['guest'])) {
+	// ゲストは共有アカウントのため、会員情報の変更・退会はできない
+	unset($menu_items['customer-input.php'], $menu_items['customer-delete-input.php']);
+}
+
 if (!empty($_SESSION['customer']['owner'])) {
 	$menu_items['tax-update-input.php']  = '税率編集';
 	$menu_items['../owner/edit3.php']    = '商品編集';

@@ -50,7 +50,8 @@ INSERT INTO `customer` (`id`, `name`, `address`, `login`, `password`, `point`, `
 (7, '猿飛 菜々子', '兵庫県神戸市中央区下山手通5-10-1', 'sarutobi', 'MonkeyFly7', 0, NULL),
 (8, '犬山 陣八', '北海道札幌市中央区北3西6', 'inuyama', 'DogMountain8', 0, NULL),
 (9, '猪口 一休', '福岡県福岡市博多区東公園7-7', 'inokuchi', 'BoarMouse9', 0, NULL),
-(10, '鈴木 優太郎', '名古屋市守山区西城2丁目12-24番地', 'suzuki', 'Taraba', 826, 1);
+(10, '鈴木 優太郎', '名古屋市守山区西城2丁目12-24番地', 'suzuki', 'Taraba', 826, 1),
+(11, 'ゲスト', '東京都千代田区丸の内1-1-1', 'guest', 'guest', 0, NULL);
 
 -- --------------------------------------------------------
 

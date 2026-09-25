@@ -5,7 +5,9 @@
 
 <?php
 
-if (isset($_SESSION['customer'])) {
+if (!empty($_SESSION['customer']['guest'])) {
+    echo 'ゲストアカウントは退会できません。';
+} elseif (isset($_SESSION['customer'])) {
     echo $_SESSION['customer']['name'], 'さんの会員登録を解除します。<br>';
     echo '<p>この操作は取り消せません。よろしいですか？</p>';
 

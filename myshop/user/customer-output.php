@@ -7,6 +7,13 @@
 
 require __DIR__ . '/../db.php';
 
+if (!empty($_SESSION['customer']['guest'])) {
+    // ログイン名やパスワードを変えられると次の訪問者がゲストログインできなくなる
+    echo 'ゲストアカウントの会員情報は変更できません。';
+    require '../footer.php';
+    exit;
+}
+
 if (isset($_SESSION['customer'])) { // ログインしている場合は、ログイン名が変更されていないか確認するために、データベースから現在のログイン名を取得
 
     $id = $_SESSION['customer']['id'];

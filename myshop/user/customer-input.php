@@ -7,6 +7,13 @@
 
 $name = $address = $login = $password = '';
 
+if (!empty($_SESSION['customer']['guest'])) {
+    echo 'ゲストアカウントの会員情報は変更できません。<br>';
+    echo '<a href="logout-input.php">ログアウト</a>して会員登録をお試しください。';
+    require '../footer.php';
+    exit;
+}
+
 if (isset($_SESSION['customer'])) {
     $name = $_SESSION['customer']['name'];
     $address = $_SESSION['customer']['address'];

@@ -21,7 +21,7 @@ function save_product_image($id)
 
 if (isset($_REQUEST['command'])) {
     switch ($_REQUEST['command']) {
-        case 'insert';
+        case 'insert':
             if (
                 empty($_REQUEST['name']) ||
                 !preg_match('/^[0-9]+$/', $_REQUEST['price'])
@@ -30,7 +30,7 @@ if (isset($_REQUEST['command'])) {
             $sql->execute([$_REQUEST['name'], $_REQUEST['price']]);
             save_product_image($pdo->lastInsertId());
             break;
-        case 'update';
+        case 'update':
             if (
                 empty($_REQUEST['name']) ||
                 !preg_match('/^[0-9]+$/', $_REQUEST['price'])
@@ -41,11 +41,36 @@ if (isset($_REQUEST['command'])) {
             );
             save_product_image($_REQUEST['id']);
             break;
-        case 'delete';
-            $sql = $pdo->prepare('delete from product where id=?');
-            $sql->execute([$_REQUEST['id']]);
+        case 'delete':
+            $id = $_REQUEST['id'];
+
+            $sql = $pdo->prepare('select count(*) from purchase_detail where product_id=?');
+            $sql->execute([$id]);
+            if ($sql->fetchColumn() > 0) {
+                $error = '購入履歴のある商品は削除できません。';
+                break;
+            }
+
+            $pdo->beginTransaction();
+            try {
+                foreach (['favorite', 'review', 'setmenu'] as $table) {
+                    $sql = $pdo->prepare("delete from $table where product_id=?");
+                    $sql->execute([$id]);
+                }
+                $sql = $pdo->prepare('delete from product where id=?');
+                $sql->execute([$id]);
+                $pdo->commit();
+                @unlink('../user/image/' . $id . '.jpg');
+            } catch (PDOException $e) {
+                $pdo->rollBack();
+                $error = '削除できませんでした。';
+            }
             break;
     }
+}
+
+if (isset($error)) {
+    echo '<p class="error">' . htmlspecialchars($error) . '</p>';
 }
 
 foreach ($pdo->query('select * from product') as $row) {
@@ -59,6 +84,7 @@ foreach ($pdo->query('select * from product') as $row) {
 
     echo '<div><div class="td1"><img src="../user/image/' . $row['id'] . '.jpg" alt="' . htmlspecialchars($row['name']) . '" width="60" onerror="this.remove()"></div>';
     echo '<div class="td1"><input type="file" name="image" accept="image/*"></div></div>';
+    echo '<input type="submit" value="更新">';
 
     echo '</form>';
 
@@ -67,7 +93,6 @@ foreach ($pdo->query('select * from product') as $row) {
     echo '<input type="hidden" name="command" value="delete">';
     echo '<input type="hidden" name="id" value="', $row['id'], '">';
     echo '<input type="submit" name="delete" value="削除">';
-    echo '<input type="submit" name="update" value="更新">';
     echo '</form><br>';
     echo "\n";
     echo '</div>';

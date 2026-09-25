@@ -7,6 +7,9 @@
 
 if (!isset($_SESSION['customer'])) {
     echo 'ログインしていません。';
+} elseif (!empty($_SESSION['customer']['guest'])) {
+    // ゲストは訪問者全員で共有するアカウントなので消させない
+    echo 'ゲストアカウントは退会できません。';
 } elseif ($_REQUEST['password'] !== $_SESSION['customer']['password']) {
     echo 'パスワードが正しくありません。';
 } else {
